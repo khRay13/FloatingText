@@ -1,0 +1,80 @@
+﻿<!-- <Window x:Class="FloatingText.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FloatingText"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+    </Grid>
+</Window> -->
+
+<Window x:Class="FloatingTextApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Floating Text" Height="320" Width="300" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Text Input -->
+        <Label Grid.Row="0" Grid.Column="0" Content="Text:"/>
+        <TextBox x:Name="textInput" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+        <!-- Times Input -->
+        <Label Grid.Row="1" Grid.Column="0" Content="Times (sec):"/>
+        <TextBox x:Name="timesInput" Grid.Row="1" Grid.Column="1" Margin="5" Text="3"/>
+
+        <!-- Trigger Mode -->
+        <Label Grid.Row="2" Grid.Column="0" Content="Trigger Mode:"/>
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" Margin="5">
+            <RadioButton x:Name="keyboardMode" Content="鍵盤" IsChecked="True" Margin="0,0,10,0"/>
+            <RadioButton x:Name="mouseMode" Content="滑鼠"/>
+        </StackPanel>
+
+        <!-- Key Input -->
+        <Label Grid.Row="3" Grid.Column="0" Content="Trigger Key:"/>
+        <TextBox x:Name="keyInput" Grid.Row="3" Grid.Column="1" Margin="5" KeyDown="KeyInput_KeyDown" Text="Enter"/>
+
+        <!-- Checkbox CapsLock -->
+        <CheckBox x:Name="CheckCapsLock" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="啟用大寫鍵提醒" IsChecked="True" Margin="5"/>
+
+        <!-- Font Size Dropdown -->
+        <Label Grid.Row="5" Grid.Column="0" Content="Font Size:"/>
+        <ComboBox x:Name="fontSizeComboBox" Grid.Row="5" Grid.Column="1" Margin="5" SelectedIndex="0">
+            <ComboBoxItem Content="32"/>
+            <ComboBoxItem Content="40"/>
+            <ComboBoxItem Content="48"/>
+            <ComboBoxItem Content="56"/>
+            <ComboBoxItem Content="60"/>
+        </ComboBox>
+
+        <!-- Template Space -->
+        <Label Grid.Row="6" Grid.Column="0" Content=""/>
+        <Label Grid.Row="6" Grid.Column="1" Content=""/>
+
+        <!-- Startup Checkbox -->
+        <CheckBox x:Name="startupCheckBox" Grid.Row="7" Grid.ColumnSpan="2" Content="開機時啟動" Margin="5"/>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="15">
+            <Button x:Name="startButton" Content="啟動" Width="80" Margin="0,0,10,0" Click="StartButton_Click"/>
+            <Button x:Name="stopButton" Content="結束" Width="80" Click="StopButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
