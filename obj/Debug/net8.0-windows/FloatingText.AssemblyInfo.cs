@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FloatingText")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ad21e37a47f3dd35e5a570893cad68458a1b5ce")]
 [assembly: System.Reflection.AssemblyProductAttribute("FloatingText")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FloatingText")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
