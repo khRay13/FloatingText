@@ -35,6 +35,7 @@ namespace FloatingTextApp
     public partial class MainWindow : Window
     {
         private Canvas floatingCanvas;
+        private Window floatingWindow; // 單一透明視窗
         private Random random = new Random();
         private bool isRunning = false;
         private IntPtr keyboardHookId = IntPtr.Zero;
@@ -46,7 +47,7 @@ namespace FloatingTextApp
         private const int WH_KEYBOARD_LL = 13;
         private const int WH_MOUSE_LL = 14;
         private const int WM_KEYDOWN = 0x0100;
-        private const int WM_RBUTTONDOWN = 0x0204;
+        // private const int WM_RBUTTONDOWN = 0x0204;
         private const int WM_LBUTTONDOWN = 0x0201;
         private LowLevelKeyboardProc _keyboardProc = KeyboardHookCallback;
         private LowLevelMouseProc _mouseProc = MouseHookCallback;
@@ -57,12 +58,26 @@ namespace FloatingTextApp
             InitializeComponent();
             _instance = this;
 
+            // 初始化Canvas
             floatingCanvas = new Canvas
             {
                 Width = SystemParameters.PrimaryScreenWidth,
                 Height = SystemParameters.PrimaryScreenHeight
             };
             floatingCanvas.Background = Brushes.Transparent;
+
+            // 初始化Window
+            floatingWindow = new Window
+            {
+                Width = SystemParameters.PrimaryScreenWidth,
+                Height = SystemParameters.PrimaryScreenHeight,
+                WindowStyle = WindowStyle.None,
+                AllowsTransparency = true,
+                Background = Brushes.Transparent,
+                Topmost = true,
+                ShowInTaskbar = false,
+                Content = floatingCanvas
+            };
 
             this.Loaded += MainWindow_Loaded;
             this.Closing += (s, e) => ShutdownApplication(); // 處理視窗「X」關閉
@@ -107,6 +122,8 @@ namespace FloatingTextApp
 
             isRunning = true;
             this.WindowState = WindowState.Minimized;
+            floatingWindow.Show();
+
             SetKeyboardHook();
             if (!isKeyboardMode) SetMouseHook();
         }
@@ -123,6 +140,7 @@ namespace FloatingTextApp
             isRunning = false;
             UnhookKeyboard();
             UnhookMouse();
+            floatingWindow.Close();
             Application.Current.Shutdown();
         }
 
@@ -237,7 +255,6 @@ namespace FloatingTextApp
         private void CreateCapsLockWarning()
         {
             double times = double.Parse(timesInput.Text);
-            Window floatingWindow = CreateFloatingWindow();
 
             TextBlock textBlock = new TextBlock
             {
@@ -257,7 +274,7 @@ namespace FloatingTextApp
             Canvas.SetTop(textBlock, startY);
             floatingCanvas.Children.Add(textBlock);
 
-            AnimateText(textBlock, times, floatingWindow);
+            AnimateText(textBlock, times);
         }
 
         // 創建飄浮文字
@@ -265,7 +282,6 @@ namespace FloatingTextApp
         {
             string text = textInput.Text + "+1";
             double times = double.Parse(timesInput.Text);
-            Window floatingWindow = CreateFloatingWindow();
 
             double fontSize = double.Parse((fontSizeComboBox.SelectedItem as ComboBoxItem).Content.ToString());
             TextBlock textBlock = new TextBlock
@@ -295,29 +311,12 @@ namespace FloatingTextApp
             Canvas.SetTop(textBlock, startY);
             floatingCanvas.Children.Add(textBlock);
 
-            AnimateText(textBlock, times, floatingWindow);
-        }
-
-        // 創建透明視窗
-        private Window CreateFloatingWindow()
-        {
-            return new Window
-            {
-                Width = SystemParameters.PrimaryScreenWidth,
-                Height = SystemParameters.PrimaryScreenHeight,
-                WindowStyle = WindowStyle.None,
-                AllowsTransparency = true,
-                Background = Brushes.Transparent,
-                Topmost = true,
-                ShowInTaskbar = false
-            };
+            AnimateText(textBlock, times);
         }
 
         // 動畫處理
-        private void AnimateText(TextBlock textBlock, double times, Window floatingWindow)
+        private void AnimateText(TextBlock textBlock, double times)
         {
-            floatingWindow.Content = floatingCanvas;
-            floatingWindow.Show();
 
             DoubleAnimation moveAnimation = new DoubleAnimation
             {
@@ -335,7 +334,6 @@ namespace FloatingTextApp
             moveAnimation.Completed += (s, e) =>
             {
                 floatingCanvas.Children.Remove(textBlock);
-                if (floatingCanvas.Children.Count == 0) floatingWindow.Close();
             };
 
             textBlock.BeginAnimation(Canvas.TopProperty, moveAnimation);

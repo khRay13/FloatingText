@@ -3,15 +3,16 @@ C:\Users\Ray\Documents\FloatingText\bin\Debug\net8.0-windows\FloatingText.deps.j
 C:\Users\Ray\Documents\FloatingText\bin\Debug\net8.0-windows\FloatingText.runtimeconfig.json
 C:\Users\Ray\Documents\FloatingText\bin\Debug\net8.0-windows\FloatingText.dll
 C:\Users\Ray\Documents\FloatingText\bin\Debug\net8.0-windows\FloatingText.pdb
+C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\MainWindow.baml
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\MainWindow.g.cs
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\App.g.cs
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText_MarkupCompile.cache
-C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\MainWindow.baml
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.g.resources
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.AssemblyInfoInputs.cache
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.AssemblyInfo.cs
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.csproj.CoreCompileInputs.cache
+C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.sourcelink.json
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.dll
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\refint\FloatingText.dll
 C:\Users\Ray\Documents\FloatingText\obj\Debug\net8.0-windows\FloatingText.pdb
